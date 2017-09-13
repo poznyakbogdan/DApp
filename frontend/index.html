@@ -22,9 +22,28 @@
                 </div>
                 <ul ng-hide="hc.isLoading">
                     <li ng-repeat="account in hc.accounts">
-                        address: {{account}}
+                        <a href="#" ng-click="hc.getBalance(account)">address: {{account}}</a>
                     </li>
                 </ul>
+                <div ng-hide="hc.isLoading">
+                    <input type="text" ng-model="hc.currentAddress">
+                    <button ng-click="hc.getBalance(hc.currentAddress)">getBalance</button>
+                    <strong>{{hc.currentBalance}}</strong>
+                </div>
+            </div>
+            <div class="send-transaction-container">
+                <span>From: </span><input type="text" ng-model="hc.transaction.from"><br>
+                <span>To: </span><input type="text" ng-model="hc.transaction.to"><br>
+                <span>Value: </span><input type="number" ng-model="hc.transaction.value"><br>
+                <button ng-click="hc.sendTransaction()">Send</button>
+            </div>
+            <div class="contracts-container">
+                <textarea ng-model="hc.contract.text">
+
+                </textarea>
+                <span>{{hc.contract.binary}}</span>
+                <span>{{hc.contract.abi}}</span>
+                <button ng-click="hc.compileContract()">Compile</button>
             </div>
         </div>
     </div>

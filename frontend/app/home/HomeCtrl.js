@@ -14,4 +14,28 @@ function HomeCtrl($scope, BlockchainService){
         })
     }
     
+    self.getBalance = address => {
+         BlockchainService.getBalance(address).then( balance => {
+            self.currentBalance = balance;
+         }).catch(err=>{
+             console.error(err);
+         });
+    }
+
+    self.sendTransaction = () => {
+        BlockchainService.sendTransaction({
+            from: self.transaction.from,
+            to: self.transaction.to,
+            value: self.transaction.value
+        }).then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.error(err);
+        })
+    } 
+
+    self.compileContract = () => {
+
+    }
+
 }
