@@ -33,6 +33,22 @@ function BlockchainService($q){
                     resolve(res);
                 });
             }) 
+        },
+        deployContract: (bytecode, interface, from) => {
+            let Contract = web3.eth.contract(JSON.parse(interface));
+            return $q((resolve, reject) => {
+                
+                Contract.new({
+                    from: from,
+                    data: bytecode,
+                    gas: 1000000
+                }, (err, contractInstance)=>{
+                    if (err){
+                        reject(err);
+                    }
+                    resolve(contractInstance);
+                }) 
+            })
         }
         
     }

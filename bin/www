@@ -1,9 +1,10 @@
 #!/usr/bin/nodejs
-var debug = require('debug')('my-application');
-var app = require('../app');
+let debug = require('debug')('my-application');
+let app = require('../app');
+const config = require("config");
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || config.get("server.port"));
 
-var server = app.listen(app.get('port'), function() {
+let server = app.listen(app.get('port'), () => {
   debug('Express server listening on port ' + server.address().port);
 });

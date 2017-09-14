@@ -11,6 +11,7 @@
     
     <script src="./app.js" defer></script>
     <script src="./app/home/BlockchainService.js" defer></script>
+    <script src="./app/home/APIService.js" defer></script>
     <script src="./app/home/HomeCtrl.js" defer></script>
 </head>
 <body>
@@ -41,9 +42,12 @@
                 <textarea ng-model="hc.contract.text">
 
                 </textarea>
+                <h2>Binary: </h2>
                 <span>{{hc.contract.binary}}</span>
+                <h2>Interface: </h2>
                 <span>{{hc.contract.abi}}</span>
                 <button ng-click="hc.compileContract()">Compile</button>
+                <button ng-click="hc.deployContract()" ng-disabled="hc.contract.isNoReadyToDeploy">Deploy</button>
             </div>
         </div>
     </div>
